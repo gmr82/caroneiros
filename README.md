@@ -44,4 +44,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou um 
 
 ## Licença
 
-Este projeto é licenciado sob a ?. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto é licenciado sob ∅. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
