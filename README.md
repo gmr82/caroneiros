@@ -22,7 +22,7 @@ Aqui estão as funcionalidades disponíveis no Caroneiros:
 | 09 | Rachar a gasosa           | Contribuir voluntariamente com o motorista da carona. | :warning: |
 | 10 | Avaliar caronas           | Atribuir notas para caronas tomadas/dadas. | :warning: |
 
-## Como Testar
+## Como testar?
 
 1. Pelo terminal, navegue até o diretório do projeto:
 
@@ -44,4 +44,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou um 
 
 ## Licença
 
-Este projeto é licenciado sob a ? License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto é licenciado sob a ?. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
