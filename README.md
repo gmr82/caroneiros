@@ -1,6 +1,6 @@
 # Caroneiros
 
-Protótipo de rede social focada em mobilidade urbana
+Introdução à programação orientada a objetos, com protótipo de rede social focada em mobilidade urbana.
 
 Função | Título | Descrição | Status
 -- | -- | -- | --
