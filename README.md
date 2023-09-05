@@ -15,7 +15,7 @@ Aqui estão as funcionalidades disponíveis no Caroneiros:
 | 02 | Perfil                     | Editar atributos do perfil de usuário. Qualquer atributo é editável, exceto “username”. | :heavy_check_mark: |
 | 03 | Desinscrever-se            | Remover conta de usuário. Todas as informações referentes a este devem ser excluídas: perfil, histórico de corridas… | :heavy_check_mark: |
 | 04 | Ofertar ou demandar carona | Criar uma oferta ou demanda de carona, definindo trajeto e vagas disponíveis/necessárias. | :heavy_check_mark: |
-| 05 | Tomar ou dar carona        | Entrar em uma carona ofertada ou demandada. | :heavy_check_mark: |
+| 05 | Tomar ou dar carona        | Entrar em uma carona ofertada ou demandada, como carona ou motorista. | :heavy_check_mark: |
 | 06 | Iniciar trajeto            | Altera condição da carona, mediante ação do motorista. | :warning: |
 | 07 | Visualizar histórico       | Exibe histórico de caronas tomadas/dadas. | :warning: |
 | 08 | Carregar valor             | Inserir valor na conta para possíveis contribuições. | :warning: |
