@@ -6,6 +6,8 @@
 # ─║╓╖╙╜╟╢╥╨╫
 
 from dataclasses import dataclass
+from typing import Any
+import types
 
 @dataclass
 class Option:
@@ -127,15 +129,27 @@ class Menu:
         return False
     
     @staticmethod
-    def confirm(question: str = '', yes: str | None = 'y', ) -> bool:
+    def confirm(question: str = '', yes: str = 's') -> bool:
         answer = input(question +
-                       dye(f" [{yes}]", "red") + "\n  ~> ")
-        return answer == yes
-    
+                    dye(f" [{yes}]", "purple") + "\n  ~> ")    
+        return answer.lower()[0] == yes
+        
+    @staticmethod
+    def get_input(text: str = '', typ: type = str):
+        try:
+            exit = typ(input(text + "\n  ~> "))
+        except ValueError:
+            print(dye(f'Entrada inválida!', 'red'), dye(f"Tipo esperado: ({typ.__name__})", "red"))
+            return Menu.get_input(text, typ)
+        else:
+            return exit
+        finally:
+            ...
+            
 
-
+            
 def dye(string: str, color: str | None = None) -> str:
-    """tinge a string"""
+    """ tinge a string """
 
     ansicolors: dict = {
         "black": "\33[0;30m",
