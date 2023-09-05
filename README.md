@@ -3,7 +3,7 @@
 Introdução à programação orientada a objetos, com protótipo de rede social focada em mobilidade urbana.
 
 Fn | Título | Descrição | Condição
-:--: | :--: | :--: | :--:
+:--: | --: | :-- | :--:
 00 | Painel DEBUG | Recurso temporário | ❔
 01 | Inscrever-se | Adicionar conta de usuário. Nome de usuário (identificador da conta) e senha devem ser fornecidos.| :heavy_check_mark:
 02 | Perfil | Editar atributos do perfil de usuário. Qualquer atributo é editável, exceto “username”. | :heavy_check_mark:
