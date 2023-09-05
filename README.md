@@ -25,10 +25,10 @@ Aqui estão as funcionalidades disponíveis no Caroneiros:
 ## Como Testar
 
 1. Pelo terminal, navegue até o diretório do projeto:
-```bash cd /caminho/para/o/diretorio/do/projeto```
+``` bash cd /caminho/para/o/diretorio/do/projeto ```
 2. Execute o arquivo main.py usando o Python:
-```bash python main.py```
-3. feito!
+``` bash python main.py ```
+3. Feito!
 
 ## Contribuições
 
@@ -36,4 +36,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou um 
 
 ## Licença
 
-Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto é licenciado sob a ? License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
