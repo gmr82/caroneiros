@@ -25,9 +25,17 @@ Aqui estão as funcionalidades disponíveis no Caroneiros:
 ## Como Testar
 
 1. Pelo terminal, navegue até o diretório do projeto:
-``` bash cd /caminho/para/o/diretorio/do/projeto ```
+
+    ``` bash
+        cd /caminho/para/o/diretorio/do/projeto
+    ```
+    
 2. Execute o arquivo main.py usando o Python:
-``` bash python main.py ```
+
+    ``` bash
+        python main.py
+    ```
+
 3. Feito!
 
 ## Contribuições
