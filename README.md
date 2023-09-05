@@ -13,7 +13,7 @@ Aqui estão as funcionalidades disponíveis no Caroneiros:
 | 00 | Painel DEBUG               | Recurso temporário                                          | ❔             |
 | 01 | Inscrever-se               | Adicionar conta de usuário. Nome de usuário (identificador da conta) e senha devem ser fornecidos. | :heavy_check_mark: |
 | 02 | Perfil                     | Editar atributos do perfil de usuário. Qualquer atributo é editável, exceto “username”. | :heavy_check_mark: |
-| 03 | Desinscrever-se            | Remover conta de usuário. Todas as informações referentes a este devem ser excluídas: conta, histórico de corridas, etc. | :heavy_check_mark: |
+| 03 | Desinscrever-se            | Remover conta de usuário. Todas as informações referentes a este devem ser excluídas: perfil, histórico de corridas… | :heavy_check_mark: |
 | 04 | Ofertar ou demandar carona | Criar uma oferta ou demanda de carona, definindo trajeto e vagas disponíveis/necessárias. | :heavy_check_mark: |
 | 05 | Tomar ou dar carona        | Entrar em uma carona ofertada ou demandada. | :heavy_check_mark: |
 | 06 | Iniciar trajeto            | Altera condição da carona, mediante ação do motorista. | :warning: |
