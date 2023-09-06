@@ -1,5 +1,4 @@
 """ módulo de usuário """
-
 import re # corrigir
 
 from getpass import getpass
