@@ -1,22 +1,17 @@
 """ módulo de menu """
 
-
 # ═║╔╗╚╝╠╣╦╩╬
 # ─│┌┐└┘├┤┬┴┼
 # ─║╓╖╙╜╟╢╥╨╫
 
 from dataclasses import dataclass
-from typing import Any
-import types
 
 @dataclass
 class Option:
-    """rascunho da classe opção"""
-
+    """ rascunho da classe opção """
     text: str | None = None  # texto da opção
     # func: function = function()
     keep: bool = False
-
 
 
 class Menu:
@@ -147,7 +142,6 @@ class Menu:
         finally:
             ...
             
-
             
 def dye(string: str, color: str | None = None) -> str:
     """ tinge a string """
