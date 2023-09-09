@@ -131,12 +131,27 @@ class Menu:
         return answer.lower()[0] == yes
         
     @staticmethod
-    def get_input(text: str = '', typ: type = str):
+    def get_input(text: str = '', typ: type = str, min_len: int = 1):
         try:
-            exit = typ(input(text + "\n  ~> "))
-        except ValueError:
-            print(dye(f'Entrada inválida!', 'red'), dye(f"Tipo esperado: ({typ.__name__})", "red"))
-            return Menu.get_input(text, typ)
+            exit = input(text + "\n  ~> ")
+            # exit = re.sub(r"[\W]", "", exit).lower()
+            if len(exit) < min_len:
+                raise ValueError(f'invalid str length: expected min {min_len}')
+            exit = typ(exit)
+
+        except ValueError as error:
+            # error_message = str(error)
+            # if "str length" in error_message:
+            #     error_message = f'Quantidade de caracteres inválida!' + ' ' + f'mín. {min_len}'
+            # elif "for int" in error_message:
+            #     error_message = f'Entrada inválida!' + ' ' + f'Tipo esperado: ({typ.__name__})'
+            # else:
+            #     ...
+            # print(dye(error_message, 'red'))
+            # print(dye(f'Entrada inválida!', 'red'), dye(f"Tipo esperado: ({typ.__name__})", "red"))
+            
+            print(dye(str(error), 'red'))
+            return Menu.get_input(text, typ, min_len)
         else:
             return exit
         finally:

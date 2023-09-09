@@ -12,10 +12,6 @@ from modules.carpools import Carpool, carpools # corrigir
 # ########################################################################### variáveis globais
 ...
     
-    
-# def profile() -> None:
-#     return profile_menu.run_in_loop()
-
 def rate_profile():
     """10| Avaliar perfil"""
 
@@ -37,9 +33,9 @@ def contribute():
 def sign_up(*args) -> bool:
     # users: dict[str, Any] = args[0]
     admin = False
-    username = input("Defina um nome de usuário.\n  ~> ")
+    username = Menu.get_input("Defina um nome de usuário.")
 
-    if username[0] is '@':
+    if username[0] == '@':
         admin = True
         username = username[1:]
     
@@ -62,12 +58,12 @@ def sign_in(*args) -> bool:
 
     username: str = input("Nome de usuário.\n  ~> ")
 
-    user = users.get(username, False) 
+    user: Regular | Admin = users.get(username, False) 
     if user:
         password = getpass("Senha de acesso.\n  ~> ")
         if user.password_is(password):
             print(dye(f"Olá, {username}!", "cyan"))
-            user.access_user_menu()
+            user.access_user_menu() # ¿POLIMORFISMO?
         else:
             print(dye("Senha inválida!", "red"))
     else:
@@ -90,7 +86,7 @@ def unsign(*args) -> bool:
         password = getpass("Senha de acesso.\n  ~> ")
         if user.password_is(password):
             if Menu.confirm("Confirmar o descadastro deste usuário?"):
-                del users[user.username]
+                del users[user.username] # AQUI
                 print(dye("Usuário descadastrado com sucesso!", "green"))
             else:
                 print(dye("Descadastro cancelado!", "red"))
@@ -102,11 +98,6 @@ def unsign(*args) -> bool:
     return True
 
 # ######################################################################## funcões: temporárias
-def debug(*args) -> bool:
-    """¿?"""
-    debug_menu.run_in_loop()
-    return True
-
 def print_all_users(*args) -> bool:
     """¿?"""
     User.print_from(users)
@@ -175,24 +166,23 @@ def try_read_pkl_dict(path: str) -> dict[str, User|Regular|Admin]:
 initial_menu = Menu(
     title="Menu: Início",
     options=[
-        (dye("DEBUG", 'red'), debug, None),
+        (dye("print all users (temp)", 'red'), print_all_users, None),
+        (dye("print all carpools (temp)", 'red'), print_all_carpools, None),
         ("Entrar", sign_in, users),
         ("Inscrever-se", sign_up, users),
         ("Desinscrever-se", unsign, users),
         ("Encerrar", "Encerrando…", None)
     ], invalid_selection_text="Seleção inválida!")
 
-debug_menu = Menu(
-    title="Menu: DEBUG",
-    options=[
-        ("print all users", print_all_users, None),
-        #  ('write dict users', write_dict_users, None),
-        #  ('read dict users', read_dict_users, None),
-        ("print all carpools", print_all_carpools, None),
-        #  ('write dict carpools', write_dict_carpools, None),
-        #  ('read dict carpools', read_dict_carpools, None),
-        ("↩", "see you soon…")
-    ], invalid_selection_text="Seleção inválida!")
+# options=[
+#     ("print all users", print_all_users, None),
+#     #  ('write dict users', write_dict_users, None),
+#     #  ('read dict users', read_dict_users, None),
+#     ("print all carpools", print_all_carpools, None),
+#     #  ('write dict carpools', write_dict_carpools, None),
+#     #  ('read dict carpools', read_dict_carpools, None),
+#     ("↩", "see you soon…")
+# ]
 
 
 # ##################################################################################### rodando

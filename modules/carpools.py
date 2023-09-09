@@ -13,7 +13,7 @@ carpools: dict[str, Any] = {} # | None = None # dict[str, Carpool]
 
 @dataclass
 class Ride:
-    '''rascunho da classe corrida'''
+    ''' rascunho da classe corrida '''
     date: datetime|None  # ¿data? da corrida
     origin: str
     destination: str
@@ -71,7 +71,8 @@ class Carpool(DraftInterface):
         
         width = 52
         seats_provided = self.seats_provided
-        seats_available = (0 if seats_provided is None else seats_provided) - self.get_passengers_quantity()
+        # seats_available = (0 if seats_provided is None else seats_provided) - self.get_passengers_quantity()
+        seats_available = self.get_passengers_quantity()
 
         print(f'╓{"":─^{width}}╖',
               f'║{"Carona #" + self.identifier:^{width}}║',
@@ -79,7 +80,7 @@ class Carpool(DraftInterface):
               f'║{f" trajeto: {self.ride}":<{width}}║',
               f'║{f" condição: {self.status}":<{width}}║',
               f'║{f" motorista: {self.driver_username}":<{width}}║',
-              f'║{f" assentos livres/disponibilizados: {seats_available}/{seats_provided}":<{width}}║',
+              f'║{f" assentos ocupados/disponibilizados: {seats_available}/{seats_provided}":<{width}}║',
               f'║{f" passageiros: {self.passengers_usernames}":<{width}}║',
               f'╙{"":─^{width}}╜', sep='\n')
 
@@ -91,7 +92,7 @@ class Carpool(DraftInterface):
             self._status = new_status
         elif not self.has_seats_available():
             self._status = 'cheia'
-            print(dye('Boa! Esta carona está completa!', 'yellow'))
+            print(dye('Todas as vagas foram preenchidas!', 'yellow'))
         else:
             ...
         # print(dye('Atualizando status…', 'yellow'))

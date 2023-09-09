@@ -22,8 +22,9 @@ class User(DraftInterface):
         self._password: str | None  # criar classe p/ senha
         self.change_password(password)
     
+    @abstractmethod
     def __del__(self):
-        print(dye(f"deletando {self.username}…", 'yellow'))
+        raise NotImplementedError
 
     @property
     def username(self) -> str:
@@ -107,6 +108,19 @@ class Regular(User):
         string += f"rides_history={self.rides_history})"
         return string
     
+    def __del__(self):
+
+        print(dye(f"deletando {self.username} ({type(self).__name__})…", 'black'))
+        for key, role in self.rides_history.items():
+            if role == 'driver':
+                carpools[key].driver_username = None
+            elif role == 'passenger':
+                index = carpools[key].passengers_usernames.index(self.username)
+                carpools[key].passengers_usernames[index] = None
+            else:
+                pass      
+        ...
+
     @property
     def profile(self) -> Profile:
         return self._profile
@@ -150,10 +164,21 @@ class Regular(User):
             return True
 
         if Menu.confirm("Tem certeza disso?"):
-            users.pop(self.username)
-            self.change_username(new_username)
             self.profile.update_attribute('username', new_username)
-            users[self.username] = self
+
+            for key, role in self.rides_history.items():
+                carpool: Carpool = carpools[key]
+                if role == 'driver':
+                    carpool.driver_username = new_username
+                elif role == 'passenger':
+                    index = carpool.passengers_usernames.index(self.username)
+                    carpool.passengers_usernames[index] = new_username
+                else:
+                    pass
+
+            users[new_username] = users.pop(self.username)
+            self.change_username(new_username)
+
             print(dye("Nome de usuário alterado com sucesso!", "green"))
         else:
             print(dye("Nome de usuário não alterado!", "red"))
@@ -189,7 +214,7 @@ class Regular(User):
                     + dye("[o/d]", "red") + "\n  ~> ").lower()[0]:
             case "o":
                 driver_username = self.username
-                seats_provided = Menu.get_input('Quantos assentos deseja disponibilizar?', int)
+                seats_provided = Menu.get_input('Quantos assentos deseja disponibilizar?', int, 0)
                 status = "ofertada"
                 role = "driver"
                 passenger_username = None
@@ -215,7 +240,7 @@ class Regular(User):
             print(dye("Carona " + status + " com sucesso!", "green"))
         else:
             print(dye("Carona não " + status + "!", "red"))
-
+        carpool.update_status()
         return True
 
     def find_carpool(self, *args) -> bool | None:
@@ -272,7 +297,7 @@ class Regular(User):
         if carpool.status == 'demandada' and Menu.confirm("Deseja ofertá-la?"):
             
             while True:
-                seats_provided = Menu.get_input('Quantos assentos deseja disponibilizar?', int)
+                seats_provided = Menu.get_input('Quantos assentos deseja disponibilizar?', int, 0)
                 # seats_provided = int(seats_provided) if seats_provided.isdigit() else 0
                 if seats_provided < carpool.get_passengers_quantity():
                     print(dye("Quantidade insuficiente para a demanda! (mín.: "
@@ -287,16 +312,17 @@ class Regular(User):
             carpool.seats_provided = seats_provided
             self.rides_history.update({carpool_key: "driver"})
             print(dye("Carona ofertada com sucesso!", "green"))
+            carpool.update_status()
             return
-        
+      
         if Menu.confirm('Deseja tomar esta carona?'):
             carpool.passengers_usernames.append(self.username)
             self.rides_history.update({carpool_key: "passenger"})
             print(dye("Carona tomada com sucesso!", "green"))
-        else:
-            print(dye("Carona não tomada!", "red"))
+            carpool.update_status()
+            return
         
-        carpool.update_status()
+        print(dye("Carona inalterada!", "red"))
     
 
 class Admin(User):
@@ -314,6 +340,9 @@ class Admin(User):
         string += f"password={self.password})"
         return string
 
+    def __del__(self):
+        print(dye(f"deletando {self.username} ({type(self).__name__})…", 'black'))
+
     @property
     def user_menu(self) -> Menu:
         return self._user_menu
@@ -327,7 +356,7 @@ class Admin(User):
         return self._debug_menu
 
     def set_user_menu(self) -> Menu:
-        title = "Menu: Admin"
+        title = "Menu: Administrador"
         invalid_selection_text = "Seleção inválida!"
 
         options = list()  # ¿mudar p/ tupla?
